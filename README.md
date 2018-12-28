@@ -12,6 +12,8 @@ Eureka还提供了客户端缓存的机制，即使所有的Eureka Server都挂�
 
 Eureka通过心跳检测、健康检查、客户端缓存等机制，保证了系统具有高可用和灵活性。
 
+**当成千上万个服务(Eureka Client)向它注册的时候，它的负载是非常高的，这在生产环境上是不太合适的。这时可以考虑将Eureka 注册中心做成一个微服务，将其集群化，从而达到高可用。注册中心之间相互感应，当有服务注册时，集群中的Eureka-eserver是对等的，它们都存有相同的信息，这就是通过服务器的冗余来增加可靠性，当有一台服务器宕机了，服务并不会终止，因为另一台服务存有相同的数据**
+
 
 ## 二、Ribbon 服务消费者
 
@@ -129,7 +131,22 @@ Spring Cloud Sleuth 主要功能就是在分布式系统中提供追踪解决方
 - cr - Client Received：客户端完成接受返回结果，此时span结束。(cr-sr)表示客户端接收服务端数据的时间
 
 
-## 
+## 九、Gateway 二代网关
+
+Spring Cloud Gateway是Spring Cloud官方推出的第二代网关框架，取代Zuul网关。网关作为流量的，在微服务系统中有着非常作用，网关常见的功能有路由转发、权限校验、限流控制等作用。
+
+Spring Cloud Gateway的特征：
+- Java 8
+- Spring Framework 5
+- Spring Boot 2
+- 动态路由
+- 内置到Spring Handler映射中的路由匹配
+- 基于HTTP请求的路由匹配 (Path, Method, Header, Host, etc…)
+- 过滤器作用于匹配的路由
+- 过滤器可以修改下游HTTP请求和HTTP响应 (Add/Remove Headers, Add/Remove Parameters, Rewrite Path, Set Path, Hystrix, etc…​)
+- 通过API或配置驱动
+- 支持Spring Cloud DiscoveryClient配置路由，与服务发现与注册配合使用
+
 
 
 
